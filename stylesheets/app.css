@@ -1,0 +1,10 @@
+//= require bootstrap/less/bootstrap
+
+.editor {
+    height: 400px;
+    min-height: 400px;
+}
+
+.preview {
+    min-height: 100%;
+}

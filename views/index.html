@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en" ng-app="myApp">
+<head>
+  <meta charset="utf-8">
+  <title>My AngularJS App</title>
+  <link rel="stylesheet" href="assets/app.css"/>
+</head>
+<body ng-controller="appCtrl">
+
+  <div class="container-fluid">
+    <header class="container">
+        <h1>Live Editor</h1>
+    </header>
+    <div class="row">
+      <div class="{{editorW}}">
+        <div class="row">
+          <label class="col-md-3 checkbox pull-left">
+            <input type="checkbox" ng-model="oneAtATime">
+            Open only one at a time
+          </label>
+          <button class="pull-right" ng-click="openPreview()">Open in new window!</button>
+          <button class="pull-right" ng-click="showPreview()">Preview</button>
+        </div>
+        <accordion close-others="oneAtATime">
+          <accordion-group is-open="html_isopen">
+              <accordion-heading>
+                  HTML <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': html_isopen, 'glyphicon-chevron-right': !html_isopen}"></i>
+              </accordion-heading>
+              <div style="height: 320px" class="editor editor-html" ui-ace="{useWrapMode : true, showGutter: true, theme:'twilight', mode: 'html', onLoad: htmlLoaded, onChange: htmlChange}" ng-model="html"></div>
+          </accordion-group>
+
+          <accordion-group is-open="css_isopen">
+              <accordion-heading>
+                  CSS <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': css_isopen, 'glyphicon-chevron-right': !css_isopen}"></i>
+              </accordion-heading>
+              <div style="height: 320px" class="editor editor-css" ui-ace="{useWrapMode : true, showGutter: true, theme:'twilight', mode: 'css', onLoad: cssLoaded, onChange: cssChange}" ng-model="css"></div>
+          </accordion-group>
+
+          <accordion-group is-open="js_isopen">
+              <accordion-heading>
+                  JavaScript <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': js_isopen, 'glyphicon-chevron-right': !js_isopen}"></i>
+              </accordion-heading>
+              <div style="height: 320px" class="editor editor-js" ui-ace="{useWrapMode : true, showGutter: true, theme:'twilight', mode: 'javascript', onLoad: jsLoaded, onChange: jsChange}" ng-model="js"></div>
+          </accordion-group>
+        </accordion>
+      </div>
+
+      <div ng-show="isShown" class="preview col-md-6">
+        <iframe ng-src="{{preview}}" class="preview col-xs-12"></iframe>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="assets/angular/angular.js"></script>
+  <script src="assets/angular-route/angular-route.js"></script>
+  <script src="assets/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+  <script src="assets/ace-builds/src-min-noconflict/ace.js"></script>
+  <script src="assets/angular-ui-ace/ui-ace.js"></script>
+  <script src="socket.io/socket.io.js"></script>
+  <script src="assets/app.js"></script>
+
+</body>
+</html>
