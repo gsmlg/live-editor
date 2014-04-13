@@ -4,7 +4,11 @@
     <meta charset="utf-8">
     <title>My Editor Preview</title>
     <style id="css-0"><%- css %></style>
+    <% if (development) { %>
     <script src="assets/angular/angular.js"></script>
+    <% } else { %>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.15/angular.min.js"></script>
+    <% } %>
     <script src="socket.io/socket.io.js"></script>
     <script src="assets/preview.js"></script>
     <script src="/js.js" id="js-0" type="text/javascript"></script>

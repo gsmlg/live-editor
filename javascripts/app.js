@@ -2,7 +2,6 @@
 var myApp = angular.module('myApp', [
     'ui.bootstrap',
     'ui.ace',
-    'ngRoute',
     'socket'
 ]);
 

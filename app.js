@@ -35,10 +35,11 @@ app.use(session({
 }));
 
 app.get('/', function(req, res, next) {
-    res.render('index.html')
+    res.render('index.html', doc)
 });
 
 var doc = {
+    development: false,
     html: '',
     css: '',
     js: ''
