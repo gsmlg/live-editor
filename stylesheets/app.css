@@ -6,3 +6,12 @@
 .preview {
     min-height: 100%;
 }
+
+.panel-heading {
+    cursor: pointer;
+    text-decoration: none;
+}
+
+input[type=radio]:checked + label {
+    background-color: orange;
+}

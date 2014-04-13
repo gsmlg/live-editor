@@ -4,7 +4,9 @@ var express = require('express'),
     app = express(),
     _ = require('lodash'),
     server = http.createServer(app),
-    io = socketio.listen(server),
+    io = socketio.listen(server, {
+        log: false
+    }),
     Mincer = require('mincer');
 
 app.use(require('body-parser')());
@@ -39,7 +41,7 @@ app.get('/', function(req, res, next) {
 });
 
 var doc = {
-    development: false,
+    development: true,
     html: '',
     css: '',
     js: ''
@@ -67,9 +69,14 @@ io.sockets.on('connection', function(socket) {
         socket.broadcast.emit('renderCss', css);
     });
     socket.on('js', function(js) {
-        doc.js = js;
-        var t = +new Date();
-        socket.broadcast.emit('renderJs', t);
+        try {
+            if (js.type === 'coffee') {
+                js.content = require('coffee-script').compile(js.content);
+            }
+            doc.js = js.content;
+            var t = +new Date();
+            socket.broadcast.emit('renderJs', t);
+        } catch (e) {}
     });
 });
 

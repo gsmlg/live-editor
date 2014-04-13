@@ -29,23 +29,45 @@
         <accordion close-others="oneAtATime">
           <accordion-group is-open="html_isopen">
               <accordion-heading>
-                  HTML <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': html_isopen, 'glyphicon-chevron-right': !html_isopen}"></i>
+                  HTML
+                  <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': html_isopen, 'glyphicon-chevron-right': !html_isopen}"></i>
               </accordion-heading>
-              <div style="height: 320px" class="editor editor-html" ui-ace="{useWrapMode : true, showGutter: true, theme:'twilight', mode: 'html', onLoad: htmlLoaded, onChange: htmlChange}" ng-model="html"></div>
+              <div style="height: 320px" class="editor editor-html"
+                   ui-ace="{useWrapMode : true, showGutter: true, theme:'twilight', mode: 'html', onLoad: htmlLoaded, onChange: htmlChange}" ng-model="html"></div>
           </accordion-group>
 
           <accordion-group is-open="css_isopen">
               <accordion-heading>
-                  CSS <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': css_isopen, 'glyphicon-chevron-right': !css_isopen}"></i>
+                  CSS
+                  <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': css_isopen, 'glyphicon-chevron-right': !css_isopen}"></i>
               </accordion-heading>
-              <div style="height: 320px" class="editor editor-css" ui-ace="{useWrapMode : true, showGutter: true, theme:'twilight', mode: 'css', onLoad: cssLoaded, onChange: cssChange}" ng-model="css"></div>
+              <div style="height: 320px" class="editor editor-css"
+                   ui-ace="{useWrapMode : true, showGutter: true, theme:'twilight', mode: 'css', onLoad: cssLoaded, onChange: cssChange}" ng-model="css"></div>
           </accordion-group>
 
           <accordion-group is-open="js_isopen">
               <accordion-heading>
-                  JavaScript <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': js_isopen, 'glyphicon-chevron-right': !js_isopen}"></i>
+                  JavaScript
+                  <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': js_isopen, 'glyphicon-chevron-right': !js_isopen}"></i>
               </accordion-heading>
-              <div style="height: 320px" class="editor editor-js" ui-ace="{useWrapMode : true, showGutter: true, theme:'twilight', mode: 'javascript', onLoad: jsLoaded, onChange: jsChange}" ng-model="js"></div>
+              <div class="type-bar js-type-bar">
+                  <input ng-change="jsTypeChange('javascript')"
+                         ng-model="jsType"
+                         id="js-type-javascript"
+                         type="radio"
+                         name="js-type"
+                         value="javascript" />
+                  <label for="js-type-javascript">JavaScript</label> |
+                  <input ng-change="jsTypeChange('coffee')"
+                         ng-model="jsType"
+                         id="js-type-coffee"
+                         type="radio"
+                         name="js-type"
+                         value="coffee" />
+                  <label for="js-type-coffee">CoffeeScript</label>
+              </div>
+              <div style="height: 320px" class="editor editor-js"
+                   ui-ace="{useWrapMode : true, showGutter: true, theme:'twilight', mode: 'javascript', onLoad: jsLoaded, onChange: jsChange}" ng-model="js"></div>
           </accordion-group>
         </accordion>
       </div>

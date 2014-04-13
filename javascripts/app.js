@@ -14,13 +14,14 @@ myApp.controller('appCtrl', ['$scope', '$http', 'socket',
         $scope.html = '';
         $scope.css = '';
         $scope.js = '';
+        $scope.jsType = 'origin';
 
         $scope.oneAtATime = true;
 
         var baseUrl = 'preview';
         $scope.preview = baseUrl;
 
-        $scope.isShown = true;
+        $scope.isShown = false;
         $scope.showPreview = function() {
             if ($scope.isShown) {
                 $scope.preview = '/404';
@@ -41,12 +42,16 @@ myApp.controller('appCtrl', ['$scope', '$http', 'socket',
             $scope.html_isopen = true;
         }
 
-        $scope.cssLoaded = function() {
-
+        $scope.cssLoaded = function(_editor) {
+            $scope.changeCssMode = function(mode) {
+                _editor.getSession().setMode('ace/mode/' + mode);
+            }
         }
 
-        $scope.jsLoaded = function() {
-
+        $scope.jsLoaded = function(_editor) {
+            $scope.changeJsMode = function(mode) {
+                _editor.getSession().setMode('ace/mode/' + mode);
+            }
         }
 
         $scope.htmlChange = function(e) {
@@ -61,7 +66,16 @@ myApp.controller('appCtrl', ['$scope', '$http', 'socket',
 
         $scope.jsChange = function(e) {
             $scope.js = e[1].getValue();
-            socket.emit('js', $scope.js);
+            var js = {
+                type: $scope.jsType,
+                content: $scope.js
+            }
+            socket.emit('js', js);
+        }
+
+        $scope.jsTypeChange = function(e) {
+            $scope.jsType = e;
+            $scope.changeJsMode(e);
         }
 
 
