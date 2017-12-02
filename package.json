@@ -24,7 +24,7 @@
   "dependencies": {
     "socket.io": "~0.9.16",
     "express": "~4.0.0",
-    "ejs": "~1.0.0",
+    "ejs": "~2.5.0",
     "mincer": "~1.0.2",
     "cookie-parser": "~1.0.1",
     "express-session": "~1.0.2",
